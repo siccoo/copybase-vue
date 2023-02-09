@@ -14,7 +14,7 @@ export default {
   data: () => {
     return {
       imgUrl:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon",
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/",
       apiCallUrl: "https://pokeapi.co/api/v2/pokemon/",
     };
   },
@@ -40,5 +40,9 @@ export default {
   font-family: "Acme", arial;
   font-size: 1rem;
   font-weight: normal;
+}
+
+h1  {
+    color: #efefef;
 }
 </style>
