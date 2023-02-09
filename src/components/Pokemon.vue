@@ -1,7 +1,17 @@
 <template>
   <div class="pokemon_container">
     <img :src="require(`@/assets/pokemonImg.png`)" />
-    <PokemonList :imgUrl="imgUrl" :apiCallUrl="apiCallUrl" />
+    <PokemonList
+      :imgUrl="imgUrl"
+      :apiCallUrl="apiCallUrl"
+      @setPokemonUrl="setPokemonUrl"
+    />
+    <PokemonDetail
+      v-if="showDetail"
+      :pokemonUrl="pokemonUrl"
+      :imgUrl="imgUrl"
+      @closeDetail="closeDetail"
+    />
   </div>
 </template>
 
@@ -16,12 +26,24 @@ export default {
       imgUrl:
         "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/",
       apiCallUrl: "https://pokeapi.co/api/v2/pokemon/",
+      pokemonUrl: "",
+      showDetail: false,
     };
   },
   components: {
     PokemonSearch,
     PokemonList,
     PokemonDetail,
+  },
+  methods: {
+    setPokemonUrl(url) {
+      this.pokemonUrl = url;
+      this.showDetail = true;
+    },
+    closeDetail() {
+      this.pokemonUrl = "";
+      this.showDetail = false;
+    },
   },
 };
 </script>
@@ -43,11 +65,10 @@ export default {
 }
 
 img {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
-h1  {
-    color: #efefef;
+h1 {
+  color: #efefef;
 }
-
 </style>

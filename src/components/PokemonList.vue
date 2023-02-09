@@ -1,6 +1,10 @@
 <template>
   <div class="pokemon_list">
-    <article v-for="(pokemon, index) in pokemons" :key="'poke' + index">
+    <article
+      v-for="(pokemon, index) in pokemons"
+      :key="'poke' + index"
+      @click="setPokemonUrl(pokemon.url)"
+    >
       <img :src="imgUrl + pokemon.id + '.png'" width="96" height="96" alt="" />
       <h3>{{ pokemon.name }}</h3>
     </article>
@@ -51,11 +55,16 @@ export default {
           }
         });
       });
+
+      observer.observe(this.$refs.infinitescrolltrigger);
     },
     next() {
       this.currentUrl = this.nextUrl;
       this.fetchPokemons();
     },
+    setPokemonUrl(url) {
+        this.$emit('setPokemon', url);
+    }
   },
   created() {
     this.currentUrl = this.apiCallUrl;
