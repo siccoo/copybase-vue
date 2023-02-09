@@ -1,5 +1,7 @@
 <template>
-  <div class="pokemon_container"></div>
+  <div class="pokemon_container">
+    
+  </div>
 </template>
 
 <script>
