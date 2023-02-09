@@ -1,6 +1,6 @@
 <template>
   <div class="pokemon_container">
-    <h1>The Pokemon's</h1>
+    <img :src="require(`@/assets/pokemonImg.png`)" />
     <PokemonList :imgUrl="imgUrl" :apiCallUrl="apiCallUrl" />
   </div>
 </template>
@@ -36,13 +36,18 @@ export default {
   padding: 10px;
   width: calc(100% - 20px);
   min-height: calc(100vh - 20px);
-  background: radial-gradient(#0e161a, #000102);
+  background: radial-gradient(#432626, #cc393b);
   font-family: "Acme", arial;
   font-size: 1rem;
   font-weight: normal;
 }
 
+img {
+    margin-bottom: 30px;
+}
+
 h1  {
     color: #efefef;
 }
+
 </style>

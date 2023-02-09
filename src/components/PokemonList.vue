@@ -46,4 +46,25 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.pokemon_list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 10px;
+  width: 100%;
+  max-width: 510px;
+
+  article {
+    height: 150px;
+    background-color: #efefef;
+    text-align: center;
+    text-transform: capitalize;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
+    h3 {
+      margin: 0;
+    }
+  }
+}
+</style>
