@@ -4,6 +4,9 @@
       <img :src="imgUrl + pokemon.id + '.png'" width="96" height="96" alt="" />
       <h3>{{ pokemon.name }}</h3>
     </article>
+    <div id="scroll-trigger" ref="infinitescrolltrigger">
+      <i class="fas fa-spinner fa-spin"></i>
+    </div>
   </div>
 </template>
 
@@ -14,11 +17,12 @@ export default {
     return {
       pokemons: [],
       nextUrl: "",
+      currentUrl: "",
     };
   },
   methods: {
     fetchPokemons() {
-      let req = new Request(this.apiCallUrl);
+      let req = new Request(this.currentUrl);
       fetch(req)
         .then((resp) => {
           if (resp.status === 200) return resp.json();
@@ -39,9 +43,26 @@ export default {
           console.log(error);
         });
     },
+    scrollTrigger() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.intersectionRatio > 0 && this.nextUrl) {
+            this.next();
+          }
+        });
+      });
+    },
+    next() {
+      this.currentUrl = this.nextUrl;
+      this.fetchPokemons();
+    },
   },
   created() {
+    this.currentUrl = this.apiCallUrl;
     this.fetchPokemons();
+  },
+  mounted() {
+    this.scrollTrigger();
   },
 };
 </script>
@@ -66,5 +87,15 @@ export default {
       margin: 0;
     }
   }
+}
+
+#scroll-trigger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 150px;
+  font-size: 2rem;
+  color: #efefef;
 }
 </style>
