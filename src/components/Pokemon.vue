@@ -1,6 +1,7 @@
 <template>
   <div class="pokemon_container">
-    
+    <h1>The Pokemon's</h1>
+    <PokemonList :imgUrl="imgUrl" :apiCallUrl="apiCallUrl" />
   </div>
 </template>
 
@@ -27,7 +28,7 @@ export default {
 
 <style lang="scss" scoped>
 @import url("https://fonts.googleapis.com/css?family=Acme");
-.container {
+.pokemon_container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +36,7 @@ export default {
   padding: 10px;
   width: calc(100% - 20px);
   min-height: calc(100vh - 20px);
-  background: radial-gradient(#156f99, #0a2e50);
+  background: radial-gradient(#0e161a, #000102);
   font-family: "Acme", arial;
   font-size: 1rem;
   font-weight: normal;
