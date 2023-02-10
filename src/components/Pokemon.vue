@@ -69,6 +69,12 @@ img {
   margin-bottom: 30px;
 }
 
+@media (max-width: 468px) {
+  img {
+    width: 100%;
+  }
+}
+
 h1 {
   color: #efefef;
 }
