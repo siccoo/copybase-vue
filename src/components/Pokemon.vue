@@ -1,6 +1,7 @@
 <template>
   <div class="pokemon_container">
     <img :src="require(`@/assets/pokemonImg.png`)" />
+    <PokemonSearch :apiCallUrl="apiCallUrl" @setPokemonUrl="setPokemonUrl" />
     <PokemonList
       :imgUrl="imgUrl"
       :apiCallUrl="apiCallUrl"
