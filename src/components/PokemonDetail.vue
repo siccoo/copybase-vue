@@ -18,7 +18,39 @@
           <div class="left">Weight</div>
           <div class="right">{{ pokemon.weight }} kg</div>
         </div>
+        <h3>Pokemon Types</h3>
+        <div class="types">
+          <div
+            class="type"
+            v-for="(value, index) in pokemon.types"
+            :key="'value' + index"
+          >
+            {{ value.type.name }}
+          </div>
+        </div>
+        <h3>Abilities</h3>
+        <div class="abilities">
+          <div
+            class="ability"
+            v-for="(value, index) in pokemon.abilities"
+            :key="'value' + index"
+          >
+            {{ value.ability.name }}
+          </div>
+        </div>
+        <h3>Stats</h3>
+        <div class="stats">
+          <div
+            class="stat"
+            v-for="(value, index) in pokemon.stats"
+            :key="'value' + index"
+          >
+            {{ value.stat.name }} -> {{ value.base_stat }}
+          </div>
+        </div>
       </div>
+      <h2 v-else>The pokemon was not found</h2>
+      <button class="close" @click="closeDetail">close</button>
     </div>
     <i v-else class="fas fa-spinner fa-spin"></i>
   </div>
@@ -48,6 +80,9 @@ export default {
           console.log(error);
         });
     },
+    closeDetail() {
+      this.$emit("closeDetail");
+    },
   },
   created() {
     this.fetchPokemons();
@@ -67,7 +102,6 @@ export default {
   width: calc(100% - 20px);
   height: calc(100vh - 20px);
   background: rgba($color: #000000, $alpha: 0.7);
-
   .pokemon_detail-view {
     display: flex;
     justify-content: center;
@@ -94,11 +128,9 @@ export default {
       overflow: hidden;
       box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 10px 10px rgba(0, 0, 0, 0.2);
     }
-
     h2 {
       text-transform: capitalize;
     }
-
     .data {
       display: flex;
       justify-content: flex-start;
@@ -106,7 +138,6 @@ export default {
       flex-direction: column;
       width: 100%;
       margin-bottom: 40px;
-
       .property {
         width: 90%;
         max-width: 400px;
@@ -119,7 +150,58 @@ export default {
           float: right;
         }
       }
+      h3 {
+        width: 90%;
+        max-width: 400px;
+        border-bottom: 1px solid #ccc;
+      }
+      .types,
+      .abilities,
+      .stats {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        width: 90%;
+        max-width: 400px;
+        .type,
+        .ability,
+        .stat {
+          margin: 0 10px 10px 0;
+          padding: 5px 10px;
+          border-radius: 20px;
+          color: #fff;
+          font-size: 1rem;
+          letter-spacing: 2px;
+          text-transform: capitalize;
+          word-wrap: none;
+          word-break: keep-all;
+        }
+        .type {
+          background-color: #0a2e50;
+        }
+        .ability {
+          background-color: #c73015;
+        }
+        .stat {
+          background-color: #3167b1;
+        }
+      }
     }
+    .close {
+      outline: none;
+      border: none;
+      border-radius: 5px;
+      background-color: #333;
+      color: #efefef;
+      padding: 10px 20px;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+  i {
+    font-size: 2rem;
+    color: #efefef;
   }
 }
 </style>
