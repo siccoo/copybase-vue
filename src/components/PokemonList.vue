@@ -63,8 +63,8 @@ export default {
       this.fetchPokemons();
     },
     setPokemonUrl(url) {
-        this.$emit('setPokemonUrl', url);
-    }
+      this.$emit("setPokemonUrl", url);
+    },
   },
   created() {
     this.currentUrl = this.apiCallUrl;
